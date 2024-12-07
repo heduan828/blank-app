@@ -1,18 +1,19 @@
 import streamlit as st
-# ... (Rest of the code from your notebook) ...
 import os
 
-# Access secrets using st.secrets
+from langchain.chat_models import ChatOpenAI
 my_openaikey = os.environ.get("OPENAI_API_KEY")
 my_serperkey = os.environ.get("SERPER_API_KEY")
-
-scrape_tool = ScrapeWebsiteTool()
-search_tool = SerperDevTool()
+llm = ChatOpenAI(model='gpt-3.5') # Loading GPT-3.5
 
 planner = Agent(
     role="Car Searcher",
     goal="Identify a suitable car to purchase based on user requirements",
-    tools=[search_tool, scrape_tool],
+    llm = llm
+    tools=[
+        SearchTools.search_internet,
+        BrowserTools.scrape_and_summarize_kwebsite
+    ],
     backstory="You excel at finding the perfect new car for sale in the USA for the user "
               "to purchase that fits the user's budget, bodystyle, priorities "
               "Your work is the basis for "
@@ -24,7 +25,11 @@ writer = Agent(
     role="Content Writer",
     goal="Write factually accurate and convincing "
          "article about the vehicle",
-    tools=[search_tool, scrape_tool],
+    llm = llm
+    tools=[
+        SearchTools.search_internet,
+        BrowserTools.scrape_and_summarize_kwebsite
+    ],
     backstory="You're working on a writing "
               "an article about the car the Car Searcher has chosen. "
               "You base your writing on the work of "
@@ -40,7 +45,11 @@ editor = Agent(
     role="Editor",
     goal="Edit a given article about vehicle to align with "
          "user requirements. ",
-    tools=[search_tool, scrape_tool],
+    llm = llm
+    tools=[
+        SearchTools.search_internet,
+        BrowserTools.scrape_and_summarize_kwebsite
+    ],
     backstory="You are an editor who receives an article about a vehicle "
               "from the Content Writer. "
               "Your goal is to review the article "
@@ -109,7 +118,7 @@ def generate_article(user_input):
 st.title("Car Recommendation App")
 
 # Embed the video
-video_url = "https://youtu.be/3exJ9hD5ERQ?si=mMu5yRgetawf5LWn"  # Replace with your URL
+video_url = "https://youtu.be/aChue7Fn35M?si=8-o2dVxw2zpkS4TJ"  # Replace with your URL
 st.video(video_url)
 
 # User input
