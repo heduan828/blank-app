@@ -4,12 +4,11 @@ import os
 
 my_openaikey = os.environ.get("OPENAI_API_KEY")
 my_serperkey = os.environ.get("SERPER_API_KEY")
-llm = ChatOpenAI(model='gpt-3.5') # Loading GPT-3.5
+llm = OpenAI(model='gpt-3.5') # Loading GPT-3.5
 
 planner = Agent(
     role="Car Searcher",
     goal="Identify a suitable car to purchase based on user requirements",
-    llm = llm
     tools=[
         SearchTools.search_internet,
         BrowserTools.scrape_and_summarize_kwebsite
@@ -25,7 +24,6 @@ writer = Agent(
     role="Content Writer",
     goal="Write factually accurate and convincing "
          "article about the vehicle",
-    llm = llm
     tools=[
         SearchTools.search_internet,
         BrowserTools.scrape_and_summarize_kwebsite
@@ -45,7 +43,6 @@ editor = Agent(
     role="Editor",
     goal="Edit a given article about vehicle to align with "
          "user requirements. ",
-    llm = llm
     tools=[
         SearchTools.search_internet,
         BrowserTools.scrape_and_summarize_kwebsite
