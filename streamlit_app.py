@@ -1,18 +1,17 @@
 import streamlit as st
 from openai import OpenAI
+from crewai import Agent, Crew, Process, Task
+from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 import os
 
 my_openaikey = os.environ.get("OPENAI_API_KEY")
 my_serperkey = os.environ.get("SERPER_API_KEY")
-llm = OpenAI(model='gpt-3.5') # Loading GPT-3.5
 
 planner = Agent(
     role="Car Searcher",
     goal="Identify a suitable car to purchase based on user requirements",
-    tools=[
-        SearchTools.search_internet,
-        BrowserTools.scrape_and_summarize_kwebsite
-    ],
+			tools=[SerperDevTool(), ScrapeWebsiteTool()],
     backstory="You excel at finding the perfect new car for sale in the USA for the user "
               "to purchase that fits the user's budget, bodystyle, priorities "
               "Your work is the basis for "
@@ -24,10 +23,7 @@ writer = Agent(
     role="Content Writer",
     goal="Write factually accurate and convincing "
          "article about the vehicle",
-    tools=[
-        SearchTools.search_internet,
-        BrowserTools.scrape_and_summarize_kwebsite
-    ],
+			tools=[SerperDevTool(), ScrapeWebsiteTool()],
     backstory="You're working on a writing "
               "an article about the car the Car Searcher has chosen. "
               "You base your writing on the work of "
@@ -43,10 +39,7 @@ editor = Agent(
     role="Editor",
     goal="Edit a given article about vehicle to align with "
          "user requirements. ",
-    tools=[
-        SearchTools.search_internet,
-        BrowserTools.scrape_and_summarize_kwebsite
-    ],
+			tools=[SerperDevTool(), ScrapeWebsiteTool()],
     backstory="You are an editor who receives an article about a vehicle "
               "from the Content Writer. "
               "Your goal is to review the article "
