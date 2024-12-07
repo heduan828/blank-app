@@ -1,17 +1,10 @@
 import streamlit as st
-
-#from crewai import Agent, Task, Crew
-#from crewai_tools import ScrapeWebsiteTool, SerperDevTool
-
 # ... (Rest of the code from your notebook) ...
 import os
 
 # Access secrets using st.secrets
-my_openaikey = st.secrets["my_openaikey"]
-my_serperkey = st.secrets["my_serperkey"]
-
-os.environ['OPENAI_API_KEY'] = my_openaikey
-os.environ["SERPER_API_KEY"] = my_serperkey
+my_openaikey = os.environ.get("OPENAI_API_KEY")
+my_serperkey = os.environ.get("SERPER_API_KEY")
 
 scrape_tool = ScrapeWebsiteTool()
 search_tool = SerperDevTool()
