@@ -108,7 +108,7 @@ def generate_article(user_input):
 st.title("Car Recommendation App")
 
 # Embed the video
-video_url = "https://youtu.be/aChue7Fn35M?si=8-o2dVxw2zpkS4TJ"  # Replace with your URL
+video_url = "https://youtu.be/3exJ9hD5ERQ?si=eat0UMiA_4_CeVCs"  # Replace with your URL
 st.video(video_url)
 
 # User input
