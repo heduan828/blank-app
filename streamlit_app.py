@@ -1,10 +1,13 @@
 import sqlite3
+import platform
 import streamlit as st
 from openai import OpenAI
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 import os
+
+os.system("sudo apt-get update && sudo apt-get install -y sqlite3")
 
 my_openaikey = os.environ.get("OPENAI_API_KEY")
 my_serperkey = os.environ.get("SERPER_API_KEY")
