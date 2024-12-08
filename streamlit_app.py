@@ -125,7 +125,8 @@ def generate_article(user_input):
 
 # Streamlit app
 
-st.title("Petrolhead Podcasts Car Recommender")
+st.title("Petrolhead Podcasts")
+st.title("Car Recommender")
 
 image_url = "https://yt3.googleusercontent.com/bfm8RFQfV-9xbSZ4SAjwthXCa03fH0UALMDRQWjKovcW9mVmQYywij-NuI21YHIDyF2EzFCG0HU=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"  # Replace with the actual URL
 st.image(image_url, caption="", use_container_width=True)
