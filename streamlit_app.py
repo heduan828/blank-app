@@ -10,12 +10,14 @@ import os
 
 os.system("sudo apt-get update && sudo apt-get install -y sqlite3")
 
+#import keys
 my_openaikey = st.secrets["my_openaikey"]
 my_serperkey = st.secrets["my_serperkey"]
 
 os.environ['OPENAI_API_KEY'] = my_openaikey
 os.environ["SERPER_API_KEY"] = my_serperkey
 
+#Agents definitions
 planner = Agent(
     role="Car Searcher",
     goal="Identify a suitable car to purchase based on user preferences",
@@ -59,6 +61,7 @@ editor = Agent(
     allow_delegation=False,
     verbose=True
 )
+#Task definitions
 plan = Task(
     description=(
         "1. Find three new car models with {bodystyle} bodystyle "
@@ -105,6 +108,7 @@ edit = Task(
                     "each section should have 2 or 3 paragraphs.",
     agent=editor
 )
+#Crew Kickoff
 crew = Crew(
     agents=[planner, writer, editor],
     tasks=[plan, write, edit],
@@ -119,7 +123,7 @@ def generate_article(user_input):
 st.title("Car Recommendation App")
 
 # Embed the video
-video_url = "https://youtu.be/3exJ9hD5ERQ?si=eat0UMiA_4_CeVCs"  # Replace with your URL
+video_url = "https://youtu.be/3exJ9hD5ERQ?si=eat0UMiA_4_CeVCs"
 st.video(video_url)
 
 # User input
