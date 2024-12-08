@@ -124,7 +124,11 @@ def generate_article(user_input):
   return result.raw
 
 # Streamlit app
-st.title("Car Recommendation App")
+
+st.title("Petrolhead Podcasts Car Recommender")
+
+image_url = "https://yt3.googleusercontent.com/bfm8RFQfV-9xbSZ4SAjwthXCa03fH0UALMDRQWjKovcW9mVmQYywij-NuI21YHIDyF2EzFCG0HU=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"  # Replace with the actual URL
+st.image(image_url, caption="", use_container_width=True)
 
 # Embed the video
 video_url = "https://youtu.be/3exJ9hD5ERQ?si=eat0UMiA_4_CeVCs"
@@ -141,7 +145,7 @@ user_input = {
 user_input['priorities'] = ', '.join(user_input['priorities'])
 
 # Generate and display the article
-if st.button("Generate Article"):
+if st.button("Generate Recommendation"):
     try:
         article = generate_article(user_input)
         st.markdown(article)
