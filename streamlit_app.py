@@ -8,6 +8,10 @@ from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from IPython.display import display
 import os
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 os.system("sudo apt-get update && sudo apt-get install -y sqlite3")
 
 #import keys
