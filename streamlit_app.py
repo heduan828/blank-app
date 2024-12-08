@@ -1,3 +1,4 @@
+import sqlite3
 import streamlit as st
 from openai import OpenAI
 from crewai import Agent, Crew, Process, Task
