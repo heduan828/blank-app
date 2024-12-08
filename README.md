@@ -1,8 +1,3 @@
-# 🎈 Blank app template
-
-A simple Streamlit app template for you to modify!
-
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
 
 ### How to run it on your own machine
 
@@ -11,8 +6,17 @@ A simple Streamlit app template for you to modify!
    ```
    $ pip install -r requirements.txt
    ```
+2. Create a secrets.toml file in the root directory and store your Open AI and Serper Keys
 
-2. Run the app
+   ```
+   $ mkdir -p .streamlit
+   $ touch .streamlit/secrets.toml
+   $ with open('.streamlit/secrets.toml', 'w') as f:
+        f.write('my_openaikey = "xxxxx"\n')
+        f.write('my_serperkey = "xxxxx"\n')
+   ```
+   
+3. Run the app
 
    ```
    $ streamlit run streamlit_app.py
