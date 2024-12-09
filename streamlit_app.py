@@ -10,6 +10,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool
 from IPython.display import display
+from IPython.display import Markdown
 import os
 
 os.system("sudo apt-get update && sudo apt-get install -y sqlite3")
@@ -72,7 +73,7 @@ plan = Task(
             "that costs less than {budget}.\n"
         "2. Do not find car models that are priced more than 15 percent below the {budget}.\n"
         "3. Base your search on at most 3 websites to ensure fast response "
-            "and do not read from edmunds.com and cars.com.\n"
+            "and do not read from caranddriver.com, edmunds.com and cars.com.\n"
         "4. Try to be as fast as possible and do not take more than 25 seconds in formulating your answer.\n"
         "5. Move on to another website if a website is not responding or providing any information for more than 5 seconds.\n"
     ),
